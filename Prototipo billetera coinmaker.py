@@ -1,22 +1,21 @@
 from datetime import datetime
 import requests
 
-"""def esmoneda(symbol):
-    return symbol in monedas"""
-
+#Credenciales coinmarket
 COINMARKET_API_KEY = "b0c4871a-3c0a-4072-b988-34cff5951ccb"
 headers = {
   'Accepts': 'application/json',
   'X-CMC_PRO_API_KEY': COINMARKET_API_KEY
 }
 
-#consultar valor de la cripto
+#consultar valor de la criptomoneda definida
 def valorCripto(symbol):
     parametros = {"symbol": symbol}#estructura de precioUSD que va a devolver el servidor
     valor=requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest",headers=headers,params=parametros).json()
     return valor["data"][symbol]["quote"]["USD"]["price"]
 
-def esCriptomoneda(symbol): #verificacion de criptomoneda a usar
+#verificacion de criptomoneda a usar
+def esCriptomoneda(symbol): 
     criptos = ["BTC","BCC","LTC","ETH","ETC","XRP"]
     if symbol in criptos:
         return True
@@ -38,8 +37,9 @@ historiaSalida=[]
 historiaEntrada=[]
 historiaFondeo=[]
 
-
+#inicio solicitando codigo
 codigoPropietario=input("para iniciar, por favor ingrese su codigo de usuario: ")
+#Cuerpo del programa (continuo hasta que se elija el 7)
 while not seleccionMenu=="7":
     seleccionMenu=input("\nElija una opcion, marcando un numero del siguiente Menu: \n1-Recibir Transferencia \n2-Hacer Tranferencia  \n3-Conoce tu balance de una criptomoneda \n4-Balance general \n5-historial de transacciones \n6-Agregar fondos a tu billetera \n7-salir del programa \n")
 
@@ -124,4 +124,3 @@ while not seleccionMenu=="7":
     #Salida del programa
     if seleccionMenu=="7":
         exit()
-    
